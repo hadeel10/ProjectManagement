@@ -96,4 +96,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskResources" />
+
+    <Button
+        android:id="@+id/GoToPro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:text="Go to project page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="GoToProjectPage"
+        app:layout_constraintTop_toBottomOf="@+id/taskSave" />
 </androidx.constraintlayout.widget.ConstraintLayout>

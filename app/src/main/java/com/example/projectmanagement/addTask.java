@@ -40,7 +40,6 @@ public class addTask extends AppCompatActivity {
         Button save = findViewById(R.id.taskSave);
 
 
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +88,8 @@ public class addTask extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     public boolean checkEmpty(){
@@ -122,5 +123,12 @@ public class addTask extends AppCompatActivity {
         }
         return empty;
 
+    }
+
+
+    public void GoToProjectPage(View view) {
+        Button GoToProjectBtn=(Button) findViewById(R.id.GoToPro);
+    Intent intent=new Intent(getApplicationContext(),addProject.class);
+    startActivity(intent);
     }
 }
