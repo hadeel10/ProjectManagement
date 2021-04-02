@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.provider.CalendarContract;
 
@@ -57,24 +58,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     /*   Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-        FirebaseFirestore.getInstance().collection("Tasks")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("TAG", document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
-                        }
-                    }
-                }); */
+    TextView title = findViewById(R.id.titleTask);
+    title.setText(getIntent().getStringExtra("title"));
 
         recyclerView = findViewById(R.id.recyclerView);
         addButton = findViewById(R.id.addButton);
@@ -84,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 // new reminder page
                 //System.out.print("new reminder page");
                Intent intent = new Intent(MainActivity.this, addTask.class);
+               String id = getIntent().getStringExtra("id");
+               intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
@@ -134,21 +121,27 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
                             int myListOfDocumentsLen = myListOfDocuments.size();
+                            int n = 1 ;
                             for (int i = 0; i < myListOfDocumentsLen; i++) {
-                                String named = myListOfDocuments.get(i).getString("name");
-                                String durationd = myListOfDocuments.get(i).getString("duration");
-                                String assignd = myListOfDocuments.get(i).getString("assignedResources");
-                                String sdated = myListOfDocuments.get(i).getString("startDate");
-                                String costd = myListOfDocuments.get(i).getString("cost");
-                                String idd = myListOfDocuments.get(i).getId();
+                                if(getIntent().hasExtra("id")) {
+                                    String idIntent = getIntent().getStringExtra("id");
+                                    if(idIntent.equals(myListOfDocuments.get(i).getString("projectID"))) {
+                                        String named = myListOfDocuments.get(i).getString("name");
+                                        String durationd = myListOfDocuments.get(i).getString("duration");
+                                        String assignd = myListOfDocuments.get(i).getString("assignedResources");
+                                        String sdated = myListOfDocuments.get(i).getString("startDate");
+                                        String costd = myListOfDocuments.get(i).getString("cost");
+                                        String idd = myListOfDocuments.get(i).getId();
 
-                                num.add(""+(i+1));
-                                id.add(idd);
-                                name.add( named);
-                                sdate.add("Start Date: "+ sdated);
-                                cost.add("Cost: "+costd );
-                                duration.add("Duration: "+ durationd );
-                                assign.add( "Assigned Resources: "+assignd );
+                                        num.add("" + (n++));
+                                        id.add(idd);
+                                        name.add(named);
+                                        sdate.add("Start Date: " + sdated);
+                                        cost.add("Cost: " + costd);
+                                        duration.add("Duration: " + durationd);
+                                        assign.add("Assigned Resources: " + assignd);
+                                    }
+                                }
 
                             } // for loop close
                             customAdapter = new CustomAdapter(MainActivity.this, id, name, sdate, duration, cost, assign, num);
