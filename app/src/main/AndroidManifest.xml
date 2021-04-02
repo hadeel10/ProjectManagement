@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectManagement">
-        <activity android:name=".myProjects"></activity>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".addProject" />
         <activity android:name=".addTask" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".myProjects">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

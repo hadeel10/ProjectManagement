@@ -3,12 +3,17 @@ package com.example.projectmanagement;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,12 +35,15 @@ public class addTask extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     CustomAdapter customAdapter;
+    private DatePickerDialog.OnDateSetListener SDateSetListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
         fStore = FirebaseFirestore.getInstance();
+        TextView date = findViewById(R.id.taskStartDate);
 
 
         Button save = findViewById(R.id.taskSave);
@@ -44,7 +53,7 @@ public class addTask extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText name = findViewById(R.id.taskName);
-                EditText date = findViewById(R.id.taskStartDate);
+                TextView date = findViewById(R.id.taskStartDate);
                 EditText duration = findViewById(R.id.taskDuration);
                 EditText cost = findViewById(R.id.taskCost);
                 EditText assign = findViewById(R.id.taskResources);
@@ -61,7 +70,7 @@ public class addTask extends AppCompatActivity {
                    task.put("assignedResources", assignS);
                    task.put("cost", costS);
                    task.put("duration", durationS);
-                   task.put("projectID", "1815");   //// need project id *********
+                   task.put("projectID", getIntent().getStringExtra("id"));   //// need project id *********
                    task.put("startDate", dateS);
 
 // Add a new document with a generated ID
@@ -88,13 +97,38 @@ public class addTask extends AppCompatActivity {
             }
         });
 
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
 
+                DatePickerDialog dialog = new DatePickerDialog(
+                        addTask.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, SDateSetListener, year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        SDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d("TAG", "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
+
+                String dates = day + "/" + month + "/" + year;
+                date.setText(dates);
+            }
+        };
 
     }
 
     public boolean checkEmpty(){
         EditText name = findViewById(R.id.taskName);
-        EditText date = findViewById(R.id.taskStartDate);
+        TextView date = findViewById(R.id.taskStartDate);
         EditText duration = findViewById(R.id.taskDuration);
         EditText cost = findViewById(R.id.taskCost);
         EditText assign = findViewById(R.id.taskResources);
@@ -126,9 +160,5 @@ public class addTask extends AppCompatActivity {
     }
 
 
-    public void GoToProjectPage(View view) {
-        Button GoToProjectBtn=(Button) findViewById(R.id.GoToPro);
-    Intent intent=new Intent(getApplicationContext(),addProject.class);
-    startActivity(intent);
-    }
+
 }
