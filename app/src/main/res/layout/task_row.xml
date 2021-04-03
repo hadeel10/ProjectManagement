@@ -105,10 +105,11 @@
                 android:id="@+id/imageView2"
                 android:layout_width="400dp"
                 android:layout_height="3dp"
+                android:layout_marginTop="44dp"
                 android:background="#5E35B1"
+                app:layout_constraintTop_toBottomOf="@+id/time_txt"
                 tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="-6dp"
-                tools:layout_editor_absoluteY="207dp" />
+                tools:layout_editor_absoluteX="-35dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

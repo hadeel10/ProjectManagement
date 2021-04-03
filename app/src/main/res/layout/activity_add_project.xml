@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,146 +8,183 @@
     android:gravity="center"
     tools:context=".addProject">
 
-    <LinearLayout
-        android:layout_width="430dp"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="190dp"
-        android:layout_gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="#5E35B1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#5E35B1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
 
-        </ImageView>
+    </ImageView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="left"
-            android:text="add Project"
-            android:textColor="#FEFDFD"
-            android:textSize="30sp"
-            android:layout_marginLeft="-300dp"
-          />
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="216dp"
+        android:layout_height="44dp"
+        android:layout_gravity="left"
+        android:text="Add Project"
+        android:textColor="#FEFDFD"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="16dp" />
 
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="64dp"
+        android:text="Project name: "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/editN"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/editN"
+        android:layout_width="245dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint=" Enter the Project name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Project name"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/editN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint=" Enter the Project name" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textSize="20dp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editD"
-            android:inputType="textMultiLine"
-            android:ems="12"
-            android:hint=" Enter the Description"/>
-    </LinearLayout>
+        android:layout_marginTop="48dp"
+        android:text="Description: "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/editD"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="MissingConstraints" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/editD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Goals"
-            android:textSize="20dp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editG"
-            android:ems="13"
-            android:inputType="textMultiLine"
-            android:hint=" Enter the Goals"/>
-    </LinearLayout>
+        android:layout_marginTop="36dp"
+        android:ems="12"
+        android:hint=" Enter the Description"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.749"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editN"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="52dp"
+        android:text="Goals: "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/editG"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:text="Start Day"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/SDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="30dp"
-            android:hint="Select Start Date"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/editG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:ems="13"
+        android:hint=" Enter the Goals"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editD"
+        app:layout_constraintVertical_bias="0.062"
+        tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Day"
-            android:textSize="20dp"
-            android:layout_margin="30dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Select End Date"
-            android:id="@+id/EDate"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
-            android:layout_margin="30dp"/>
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="118dp"
+        android:layout_height="34dp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="80dp"
+        android:text="Start Day: "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        tools:ignore="MissingConstraints" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/SDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
+        android:layout_marginTop="25dp"
+        android:hint="Select Start Date"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editG"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="76dp"
+        android:text="End Day: "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/EDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
+        android:layout_marginTop="25dp"
+        android:hint="Select End Date"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.742"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SDate"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/AddProjectBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Add Project"/>
+        android:text="Add Project"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.789" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
