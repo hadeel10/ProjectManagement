@@ -34,6 +34,7 @@ public class addProject extends AppCompatActivity {
     private TextView StartDate,EndDate;
     FirebaseFirestore fStore;
     private DatePickerDialog.OnDateSetListener SDateSetListener,EDateSetListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +123,7 @@ public class addProject extends AppCompatActivity {
                     task.put("goals", goalss);
                     task.put("startDate", sd);
                     task.put("finishDate", ed);
+                  //  task.put("total", );
 
 // Add a new document with a generated ID
                     FirebaseFirestore.getInstance().collection("Projects")
@@ -151,7 +153,6 @@ public class addProject extends AppCompatActivity {
     public boolean checkEmpty(){
         StartDate = (TextView) findViewById(R.id.SDate);
         EndDate = (TextView) findViewById(R.id.EDate);
-
         EditText name = findViewById(R.id.editN);
         EditText dis = findViewById(R.id.editD);
         EditText goals = findViewById(R.id.editG);

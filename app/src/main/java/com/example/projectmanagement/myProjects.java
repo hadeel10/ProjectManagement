@@ -36,7 +36,9 @@ public class myProjects extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
 
     private List<cardView>cardViewList;
-    ArrayList<String> id, name, sdate, edate, goals, des, num;
+    ArrayList<String> id, name, sdate, edate, goals,total, des, num;
+    static  String idd,costd;
+    static int totcost=0;
 
     myAdapter customAdapter;
 
@@ -73,6 +75,7 @@ public class myProjects extends AppCompatActivity {
         edate = new ArrayList<>();
         des = new ArrayList<>();
         goals = new ArrayList<>();
+        total = new ArrayList<>();
         num = new ArrayList<>();
 
         storeDataInArrays();
@@ -105,7 +108,47 @@ public class myProjects extends AppCompatActivity {
                                 String edatep = myListOfDocuments.get(i).getString("finishDate");
                                 String desp = myListOfDocuments.get(i).getString("description");
                                 String goalp = myListOfDocuments.get(i).getString("goals");
-                                String idd = myListOfDocuments.get(i).getId();
+
+                            idd = myListOfDocuments.get(i).getId();
+
+                                Task<QuerySnapshot> querySnapshotTask2 = FirebaseFirestore.getInstance()
+                                        .collection("Tasks")
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @SuppressLint("ResourceAsColor")
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    List<DocumentSnapshot> myListOfDocuments = task.getResult().getDocuments();
+                                                    int myListOfDocumentsLen = myListOfDocuments.size();
+                                                    int n = 1 ;
+
+                                                    //Toast.makeText(getApplicationContext(),"hii"+totcost,Toast.LENGTH_SHORT).show();
+                                                    for (int i = 0; i < myListOfDocumentsLen; i++) {
+
+                                                            String idIntent = idd;
+                                                        Toast.makeText(getApplicationContext(),idIntent,Toast.LENGTH_SHORT).show();
+                                                            if(idIntent.equals(myListOfDocuments.get(i).getString("projectID"))) {
+
+                                                                costd = myListOfDocuments.get(i).getString("cost");
+
+                                                           totcost+=Integer.parseInt(costd);
+                                                                Toast.makeText(getApplicationContext(),"hii"+totcost,Toast.LENGTH_SHORT).show();
+
+                                                            }
+
+
+                                                    } // for loop close
+
+
+                                                }// if (task successful ) close
+
+
+
+                                            }
+
+                                        });
+
 
                                 num.add(""+(i+1));
                                 id.add(idd);
@@ -113,10 +156,13 @@ public class myProjects extends AppCompatActivity {
                                 sdate.add("Start Date: "+ sdatep);
                                 goals.add("Goals: "+goalp );
                                 des.add("Description: "+ desp );
+                                total.add("Total Cost: "+ totcost );
                                 edate.add( "Finish Date: "+edatep );
+                                totcost=0;
+
 
                             } // for loop close
-                            customAdapter = new myAdapter(myProjects.this, id, name, sdate, edate, des, goals, num);
+                            customAdapter = new myAdapter(myProjects.this, id, name, sdate, edate, des,total ,goals, num);
                             recyclerView.setAdapter(customAdapter);
                            // Toast.makeText(getApplication()," "+sdate.get(0),Toast.LENGTH_LONG).show();
                             recyclerView.setLayoutManager(new LinearLayoutManager(myProjects.this));
@@ -130,14 +176,18 @@ public class myProjects extends AppCompatActivity {
 
     }
 
+
+
     public void clearList(){
         id.clear();
         name.clear();
         sdate.clear();
         edate.clear();
         goals.clear();
+        total.clear();
         des.clear();
         num.clear();
+
     }
 
     public void setUp(){
