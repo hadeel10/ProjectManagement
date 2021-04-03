@@ -3,28 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="700dp"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".addProject">
 
     <LinearLayout
+        android:layout_width="430dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="190dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#5E35B1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="left"
+            android:text="add Project"
+            android:textColor="#FEFDFD"
+            android:textSize="30sp"
+            android:layout_marginLeft="-300dp"
+          />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Project name"
             android:textSize="20dp" />
+
         <EditText
+            android:id="@+id/editN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editN"
             android:ems="10"
-            android:hint=" Enter the Project name"
-            />
+            android:hint=" Enter the Project name" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,20 +101,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             android:text="Start Day"
-            android:textSize="20dp"
-            android:layout_margin="30dp"/>
+            android:textSize="20dp" />
+
         <TextView
+            android:id="@+id/SDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Select Start Date"
-            android:id="@+id/SDate"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
-            android:layout_margin="30dp"/>
+            android:layout_margin="30dp"
+            android:hint="Select Start Date"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

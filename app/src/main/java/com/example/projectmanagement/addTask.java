@@ -72,6 +72,7 @@ public class addTask extends AppCompatActivity {
                    task.put("duration", durationS);
                    task.put("projectID", getIntent().getStringExtra("id"));   //// need project id *********
                    task.put("startDate", dateS);
+               //    int i=(int) costS;
 
 // Add a new document with a generated ID
                    FirebaseFirestore.getInstance().collection("Tasks")
@@ -132,7 +133,6 @@ public class addTask extends AppCompatActivity {
         EditText duration = findViewById(R.id.taskDuration);
         EditText cost = findViewById(R.id.taskCost);
         EditText assign = findViewById(R.id.taskResources);
-
         boolean empty = false;
 
         if(name.getText().length()==0){

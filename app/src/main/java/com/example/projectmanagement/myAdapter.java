@@ -25,12 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
-    private ArrayList id, nameP, sdateP, edateP, desP, goalP, numP;
+    private ArrayList id, nameP, sdateP, edateP,total, desP, goalP, numP;
     private List<cardView> listItem;
     private Context context;
     static String key;
     public myAdapter(Context context, ArrayList id, ArrayList name,
-                     ArrayList sdate, ArrayList edate, ArrayList des, ArrayList goal, ArrayList num) {
+                     ArrayList sdate, ArrayList edate, ArrayList des,ArrayList total ,ArrayList goal, ArrayList num) {
         this.context = context;
         this.id = id;
         this.nameP = name;
@@ -38,6 +38,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
         this.edateP = edate;
         this.desP = des;
         this.goalP = goal;
+        this.total = total;
         this.numP = num;
     }
 
@@ -58,6 +59,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
         holder.sdate.setText(sdateP.get(position).toString());
         holder.goal.setText(goalP.get(position).toString());
         holder.des.setText(desP.get(position).toString());
+        holder.cost.setText(total.get(position).toString());
         holder.edate.setText(edateP.get(position).toString());
         holder.id = id.get(position).toString();
     }
@@ -113,7 +115,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView  name, sdate, edate, des, goal, num;
+        TextView  name, sdate, edate, des, goal,cost, num;
           String id ;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -123,6 +125,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
             des = itemView.findViewById(R.id.des_txtPro);
             sdate = itemView.findViewById(R.id.sdate_txtPro);
             goal = itemView.findViewById(R.id.goals_txt);
+            cost = itemView.findViewById(R.id.cost_txtPro);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
